@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOSTER LINGÜÍSTICO | XPAÑOL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Special Elite',cursive;
+}
+
+body{
+    min-height:100vh;
+    background:#7c3aed;
+    color:white;
+    padding:50px 30px;
+    position:relative;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    pointer-events:none;
+    z-index:0;
+}
+
+.header,.grid{
+    position:relative;
+    z-index:1;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.header h1{
+    font-size:4rem;
+    margin-bottom:15px;
+    letter-spacing:2px;
+}
+
+.subtitle{
+    opacity:.9;
+    font-size:1rem;
+}
+
+.grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.card{
+    background:white;
+    color:#111;
+    text-decoration:none;
+    border-radius:24px;
+    min-height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    transition:.25s;
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 25px 45px rgba(0,0,0,.25);
+}
+
+.card h3{
+    font-size:2rem;
+    line-height:1.4;
+}
+
+/* EFECTO AL HACER CLIC: fondo morado y texto blanco */
+.card:active,
+.card.pressed{
+    background:#381A6B;
+    color:white;
+}
+
+/* SECCIONES AUN NO LISTAS */
+.card.soon{
+    cursor:default;
+}
+
+@media(max-width:1100px){
+    .grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:700px){
+    .grid{ grid-template-columns:1fr; }
+    .header h1{ font-size:2.5rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>BOOSTER LINGÜÍSTICO</h1>
+    <div class="subtitle">
+        MARKETING DIGITAL • ENGLISH + ESPAÑOL • BY XPAÑOL
+    </div>
+</div>
+
+<div class="grid">
+
+    <a class="card" href="register-boost.html">
+        <h3>REGISTER<br>BOOST</h3>
+    </a>
+
+    <!-- Cuando exista el archivo: cambiar div por a, anadir href y quitar la clase "soon" -->
+    <div class="card soon">
+        <h3>FRASES CLAVE<br>DE SECTOR</h3>
+    </div>
+
+    <div class="card soon">
+        <h3>IDIOMAT</h3>
+    </div>
+
+</div>
+
+
+<script>
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", e => {
+        card.classList.add("pressed");
+
+        if (card.tagName === "A") {
+            // pequena pausa para que se vea el efecto antes de cambiar de pagina
+            e.preventDefault();
+            setTimeout(() => { window.location.href = card.href; }, 350);
+        } else {
+            // secciones aun no listas: el efecto se apaga solo
+            setTimeout(() => card.classList.remove("pressed"), 600);
+        }
+    });
+});
+
+// al volver con el boton "atras" las tarjetas vuelven a su estado normal
+window.addEventListener("pageshow", () => {
+    document.querySelectorAll(".card.pressed").forEach(c => c.classList.remove("pressed"));
+});
+</script>
+
+</body>
+</html>
